@@ -5,36 +5,35 @@ from .serializers import LibrarySerializer,AuthorSerializer,BookSerializer,Leads
 from .models import Book, Author, Library,Leads
 
 
-class BookListView(ListView,viewsets.ModelViewSet):
+class BookListView(viewsets.ModelViewSet):
     paginate_by = 100
     model = Book
     context_object_name = 'books'
-    serializers_class = BookSerializer
+    serializer_class = BookSerializer
     queryset = Book.objects.all()
-    def get_queryset(self):
-        qs = super(BookListView, self).get_queryset()
-        qs.order_by('title')
-        return qs
+    
 
 
-class AuthorListView(ListView,viewsets.ModelViewSet):
+class AuthorListView(viewsets.ModelViewSet):
     paginate_by = 100
     model = Author
     context_object_name = 'authors'
     serializer_class = AuthorSerializer
     queryset = Author.objects.all()
 
-class LibraryListView(ListView,viewsets.ModelViewSet):
+class LibraryListView(viewsets.ModelViewSet):
     paginate_by = 10
     model = Library
     context_object_name = 'libraries'
     serializer_class = LibrarySerializer
     queryset = Library.objects.all()
 
-class LeadsListView(ListView,viewsets.ModelViewSet):
+class LeadsListView(viewsets.ModelViewSet):
+    paginate_by = 100
     model = Leads
+    context_object_name = 'leads'
     serializer_class = LeadsSerializer
-    queryset = Library.objects.all()
+    queryset = Leads.objects.all()
 
 #book_list_view = BookListView.as_view()
 #author_list_view = AuthorListView.as_view()

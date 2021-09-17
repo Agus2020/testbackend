@@ -29,3 +29,4 @@ class Leads(models.Model):
     Fullname = models.CharField(max_length=40)
     Phone = models.DecimalField(max_digits=10,decimal_places=1)
     Library = models.ForeignKey(Library, on_delete=models.CASCADE)
+   
