@@ -4,6 +4,7 @@ from django.db import models
 class Library(models.Model):
 
     name = models.CharField(max_length=100)
+    
     def __str__(self):
         return self.name
 
@@ -25,7 +26,7 @@ class Author(models.Model):
         return self.first_name
 
 class Leads(models.Model):
-    Email = models.EmailField(max_length=100)
+    Email = models.EmailField(max_length=100,unique=True)
     Fullname = models.CharField(max_length=40)
     Phone = models.DecimalField(max_digits=10,decimal_places=1)
     Library = models.ForeignKey(Library, on_delete=models.CASCADE)

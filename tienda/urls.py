@@ -5,10 +5,10 @@ from book.views import BookListView,AuthorListView,LibraryListView,LeadsListView
 
 
 router = DefaultRouter()
-router.register('book',BookListView)
-router.register('author',AuthorListView)
-router.register('library',LibraryListView)
-router.register('leads',LeadsListView)
+router.register('api/book',BookListView)
+router.register('api/author',AuthorListView)
+router.register('api/library',LibraryListView)
+router.register('api/leads',LeadsListView)
 
 urlpatterns = router.urls
 

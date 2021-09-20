@@ -1,5 +1,7 @@
 from django.views.generic import ListView
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 from .models import Library,Author,Book
 from .serializers import LibrarySerializer,AuthorSerializer,BookSerializer,LeadsSerializer
 from .models import Book, Author, Library,Leads
@@ -11,8 +13,9 @@ class BookListView(viewsets.ModelViewSet):
     context_object_name = 'books'
     serializer_class = BookSerializer
     queryset = Book.objects.all()
-    
-
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter]
+    filterset_fields = ['id']
+    search_fields = ['title']
 
 class AuthorListView(viewsets.ModelViewSet):
     paginate_by = 100
@@ -27,6 +30,9 @@ class LibraryListView(viewsets.ModelViewSet):
     context_object_name = 'libraries'
     serializer_class = LibrarySerializer
     queryset = Library.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id']
+   
 
 class LeadsListView(viewsets.ModelViewSet):
     paginate_by = 100
