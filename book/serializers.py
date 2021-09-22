@@ -7,6 +7,8 @@ class LibrarySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BookSerializer(serializers.ModelSerializer):
+    author = serializers.CharField(source='author.last_name') 
+    libraries = LibrarySerializer(many=True)
     class Meta:
         model = Book
         fields = '__all__'
