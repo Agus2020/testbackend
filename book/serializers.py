@@ -6,11 +6,23 @@ class LibrarySerializer(serializers.ModelSerializer):
         model = Library
         fields = '__all__'
 
+class LibrarySerializer_filter(serializers.ModelSerializer):
+    class Meta:
+        model = Library_filter
+        fields = '__all__'
+
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.CharField(source='author.last_name') 
     libraries = LibrarySerializer(many=True)
     class Meta:
         model = Book
+        fields = '__all__'
+
+class BookSerializer_search(serializers.ModelSerializer):
+    author = serializers.CharField(source='author.last_name') 
+    libraries = LibrarySerializer(many=True)
+    class Meta:
+        model = Book_search
         fields = '__all__'
 
 class AuthorSerializer(serializers.ModelSerializer):
