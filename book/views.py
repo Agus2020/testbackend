@@ -46,7 +46,8 @@ mixins.ListModelMixin
     context_object_name = 'libraries_filter'
     serializer_class = LibrarySerializer
     queryset = Library.objects.all()
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id']
 
 class BookListView(
 viewsets.GenericViewSet,
@@ -78,9 +79,9 @@ class BookListView_search(
 viewsets.GenericViewSet,
 mixins.ListModelMixin):
     paginate_by = 100
-    model = Book_search
+    model = Book
     context_object_name = 'books_search'
-    serializer_class = BookSerializer_search
+    serializer_class = BookSerializer
     queryset = Book.objects.all()
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     search_fields = ['title']
